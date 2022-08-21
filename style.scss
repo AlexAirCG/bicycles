@@ -13,6 +13,7 @@ $minwidth: 320px;
 @import "ui.scss";
 @import "mixins.scss";
 @import "header.scss";
+@import "footer.scss";
 //  ========================================
 
 // ОБОЛОЧКА ========================================
@@ -128,6 +129,7 @@ $minwidth: 320px;
 
 }
 
+//========================================================================
 .brends {
     &_last {}
 
@@ -157,11 +159,9 @@ $minwidth: 320px;
     }
 
     // .brends__item
-
     &__item {}
 
     // .brends__content
-
     &__content {
         padding: 70px 65px 55px 65px;
         position: relative;
@@ -181,7 +181,6 @@ $minwidth: 320px;
     }
 
     // .brends__image
-
     &__image {
         padding: 0 0 37.51% 0;
     }
@@ -214,48 +213,50 @@ $minwidth: 320px;
         }
     }
 
+}
 
-    .item {
+//===================================================================
+.item {
+    height: 100%;
+    display: block;
+    position: relative;
+
+    // .item__logo
+    &__logo {
+        position: absolute;
+        width: 100%;
         height: 100%;
-        display: block;
-        position: relative;
+        top: 0;
+        left: 0;
+        @include flexbox();
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+    }
 
-        // .item__logo
-        &__logo {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            @include flexbox();
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
+    // .item__image
+    &__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
 
-        // .item__image
-        &__image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+    &:hover {
+        .item__logo {
+            @include anim(0.9s, 0s);
+            background-color: rgba(100, 194, 158, 0.5);
         }
+    }
 
-        &:hover {
-            .item__logo {
-                @include anim(0.5s, 0s);
-                background-color: rgba(100, 194, 158, 0.5);
-            }
-        }
-
-        @media (max-width: 1100px) {
-            height: auto;
-            padding: 0 0 70% 0;
-        }
+    @media (max-width: 1100px) {
+        height: auto;
+        padding: 0 0 70% 0;
     }
 }
 
+//========================================================================
 .slider {
     position: relative;
     padding: 0 60px;
@@ -366,16 +367,50 @@ $minwidth: 320px;
     background-color: #a9afb3;
 }
 
+//===========================================================================
 .shop {
 
-    // .shop__body
+    .item {
+        &__logo {
+            display: none;
+        }
 
+        &:hover {
+            .item__logo {
+
+                @include anim(0.9s, 0s);
+                background-color: rgba(100, 194, 158, 0.5);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                @include flexbox();
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 2;
+
+
+                span {
+                    margin: 10px 0 0 0;
+                    font-size: 14px;
+                    font-weight: 700;
+                    letter-spacing: 2.8px;
+                    text-transform: uppercase;
+                    color: #fff;
+                }
+
+            }
+        }
+    }
+
+    // .shop__body
     &__body {
         @include flexbox();
     }
 
     // .shop__column
-
     &__column {
         flex: 0 1 16.666%;
 
@@ -386,20 +421,60 @@ $minwidth: 320px;
     }
 
     // .shop__block
-
     &__block {}
 
     // .shop__footer
-
-    &__footer {}
+    &__footer {
+        padding: 75px 0;
+        text-align: center;
+        background-color: #282f35;
+    }
 
     // .shop__btn
+    &__btn {
+        display: inline-block;
+        padding: 0 60px;
+        height: 50px;
+        line-height: 48px;
+        letter-spacing: 2.8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
 
-    &__btn {}
+
+    @media (max-width: 1100px) {
+        &__body {
+            flex-wrap: wrap;
+        }
+
+        &__column {
+            flex: 0 1 50%;
+
+            &:first-child {
+                flex: 1 1 100%;
+            }
+
+            &:last-child {
+                flex: 1 1 100%;
+            }
+        }
+
+        &__btn {
+            padding: 0 30px;
+        }
+
+        &__footer {
+            padding: 50px 0;
+        }
+    }
+
 }
 
 .block-shop {
-
+    height: 100%;
     // .block-shop__row
 
     &__row {
@@ -415,25 +490,136 @@ $minwidth: 320px;
     // .block-shop__item
 
     &__item {
+        height: auto;
+        padding: 0 0 50% 0;
 
         //.block-shop__item_b
         &_b {
+            padding: 0 0 200.5% 0;
+        }
+
+        // block-shop__item_l
+        &_l {
             padding: 0 0 100% 0;
         }
     }
 }
 
-.item {
+//===========================================================================
+.subscribe {
 
-    // .item__logo
+    // .subscribe__body
+    &__body {
+        padding: 110px 0;
+        max-width: 534px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    @media (max-width: 1100px) {
+        &__body {
+            padding: 80px 0;
+        }
+    }
 
-    &__logo {}
+    // .subscribe__logo
+    &__logo {
+        margin: 0 0 39px 0;
+    }
 
-    // .item__image
+    // .subscribe__label
+    &__label {
+        font-size: 24px;
+        color: #848789;
+        font-style: italic;
+        margin: 0 0 35px 0;
+    }
 
-    &__image {}
+    // .subscribe__form
+    &__form {
+        @include flexbox();
+    }
+    
+
+    // .subscribe__input
+    &__input {
+        flex: 1 1 auto;
+        padding: 0 8px 0 0;
+
+        .input {
+            width: 100%;
+            height: 69px;
+            border: 1px solid #d3d7d9;
+            background-color: #fff;
+            padding: 0 28px;
+            color: #929292;
+            font-size: 20px;
+            font-style: italic;
+
+            &:hover {
+                box-shadow: 0 0 15px #7a956b;
+            }
+            &:focus {
+                box-shadow: 0 0 15px #7a956b;
+            }
+            &._error {
+                box-shadow: 0 0 15px red;
+            }
+        }
+    }
+
+    // .form__body
+    &__input {
+        position: relative;
+    }
+    &__input::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(51, 51 , 51, 0.9) url("/img/load2.gif") center / 50px no-repeat;
+        opacity: 0;
+        visibility: hidden;
+    }
+    // sending
+    &__input._sending::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // .subscribe__button
+    &__button {
+        flex: 0 0 126px;
+        
+    }
+
+    // .subscribe__btn
+    &__btn {
+        width: 100%;
+        height: 69px;
+        line-height: 69px;
+        color: #fff;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 300;
+        background-color: #64c29e;
+        position: relative;
+        top: 0;
+    }
+    &__btn:hover {
+        box-shadow: 0 0 15px #7a956b;
+    }
+    &__btn:active {
+        top: 3px;
+    }
+
+    @media (max-width: 500px) {
+        &__form {
+            display: block;
+        }
+        &__input {
+            padding: 0 0 8px 0;
+        }
+    }
 }
-
-.ibg {}
-
-.container {}
